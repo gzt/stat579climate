@@ -29,7 +29,7 @@ summary(sep2012)
 summary(jan2012)
 write.csv(jan,"ensemble1_jan.csv")
 write.csv(last20,"ensemble1_last20.csv")
-
+write.csv(monthly,"monthlyglobaldev.csv")
 library(maps)
 qplot(long,lat,data=jan2012,fill=value, geom="tile",xlim=c(-180,180),ylim=c(-90,90))+ theme(aspect.ratio=1/2)+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
 # adding +scale_fill_brewer(palette="Spectral")    should change the palette, but it borks
