@@ -18,16 +18,34 @@ qplot(fixedtime,anomaly,data=recent,color=anomaly) + geom_smooth()
 jan$realyear<-(jan$year+1849)
 last20$realyear<-(last20$year+1849)
 
-jan$long<-(jan$xloc*5-180)
-jan$lat<-(jan$yloc*5-90)
-last20$long<-(last20$xloc*5-180)
-last20$lat<-(last20$yloc*5-90)
+jan$long<-(180-jan$xloc*5)
+jan$lat<-(90-jan$yloc*5)
+last20$long<-(180-last20$xloc*5)
+last20$lat<-(90-last20$yloc*5)
 
 jan2012<-subset(jan,realyear==2012)
+sep2012<-subset(last20,((realyear==2012)&(month==9)))
+summary(sep2012)
 summary(jan2012)
 write.csv(jan,"ensemble1_jan.csv")
 write.csv(last20,"ensemble1_last20.csv")
+
 library(maps)
-qplot(long,lat,data=jan2012,fill=value, geom="tile")+ theme(aspect.ratio=1/2)+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
+qplot(long,lat,data=jan2012,fill=value, geom="tile",xlim=c(-180,180),ylim=c(-90,90))+ theme(aspect.ratio=1/2)+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
 # adding +scale_fill_brewer(palette="Spectral")    should change the palette, but it borks
 #i think we need to use ggplot instead of qplot to get the map to work right
+
+jan2012$lat<-jan2012$lat+2.5 #fiddling with these to get them to show up right
+sep2012$lat<-sep2012$lat+2.5
+jan2012$long<-jan2012$long+2.5
+sep2012$long<-sep2012$long+2.5
+worldmap<-map_data("world")
+p<-ggplot()
+p <- p + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)
+p<-p+geom_tile(data=jan2012, aes(x=long,y=lat,fill=value,alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
+p
+
+q<-ggplot()
+q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)
+q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
+q
