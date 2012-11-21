@@ -5,6 +5,7 @@ library(ggplot2)
 library(lubridate)
 library(RColorBrewer)
 library(maps)
+library(scale)
 
 jan2012<-subset(jan,realyear==2012)
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
