@@ -1,0 +1,13 @@
+lubridate
+RColorBrewer
+maps
+mgcv
+ggplot2
+knitr
+stats
+graphics
+grDevices
+utils
+datasets
+methods
+base
