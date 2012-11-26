@@ -39,7 +39,7 @@ Global montly temperature deviation data was downloaded as well. However, there 
 
 \section{Main Section:}
 This is still being worked on. There will be some discussion (without modeling) of the overall trend in the data: 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 <<plot-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se=FALSE,color="red")
@@ -49,19 +49,17 @@ qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se
 
 There will also be a discussion of what the recent data look like, in light of the "controversy" about the last 16 years of data: 
 
-\begin{figure}[h!]
+\begin{figure}[!htb]
 <<recent-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,anomaly,data=recent, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
 @
-
 \caption{\label{recenttrend}Time series of global temperature anomalies, 1975-present.}
 \end{figure}
 
-
 There will also be a few maps of some specific time periods. This is the latest map, which shows the difference between the average temperature in September 2012 from the average in 1961-1990. Note that not every grid point has an entry and that not every grid point is greater than 0. 
 
-\begin{figure}[h!]
+\begin{figure}[htb!]
 <<recent-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
@@ -70,11 +68,8 @@ q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="
 q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 print(q)
 @
-
 \caption{\label{sep2012map}Map of temperature anomalies for September 2012}
 \end{figure}
-
-
 
 \section{Conclusion:}
 There will be some kind of conclusion.

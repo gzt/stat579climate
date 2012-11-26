@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.1.18)  26 NOV 2012 17:07
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.1.18)  26 NOV 2012 17:25
 entering extended mode
 **global_climate_project.tex
 (C:\Users\gzt\Documents\GitHub\stat579climate\global_climate_project.tex
@@ -221,18 +221,13 @@ Package color Info: Redefining color shadecolor on input line 95.
 File: figure/recent-trend.pdf Graphic file (type pdf)
 
 <use figure/recent-trend.pdf>
+Package color Info: Redefining color shadecolor on input line 105.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-Package color Info: Redefining color shadecolor on input line 107.
 <figure/recent-map.pdf, id=13, 578.16pt x 361.35pt>
 File: figure/recent-map.pdf Graphic file (type pdf)
 
-<use figure/recent-map.pdf>
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[2 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/plot-trend.pdf>]
+<use figure/recent-map.pdf> [2 <C:/Users/gzt/Documents/GitHub/stat579climate/fi
+gure/plot-trend.pdf>]
 Overfull \vbox (7.14415pt too high) has occurred while \output is active []
 
 
