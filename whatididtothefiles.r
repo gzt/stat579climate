@@ -17,11 +17,16 @@ recent<-subset(monthly, fixedtime>1990)
 qplot(fixedtime,anomaly,data=recent,color=anomaly) + geom_smooth()
 jan$realyear<-(jan$year+1849)
 last20$realyear<-(last20$year+1849)
+annual$realyear<-(annual$year+1849)
 
 jan$long<-(180-jan$xloc*5)
 jan$lat<-(90-jan$yloc*5)
 last20$long<-(180-last20$xloc*5)
 last20$lat<-(90-last20$yloc*5)
+annual$long<-(180-annual$xloc*5)
+annual$lat<-(90-annual$yloc*5)
+
+
 
 jan2012<-subset(jan,realyear==2012)
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
@@ -30,6 +35,7 @@ summary(jan2012)
 write.csv(jan,"ensemble1_jan.csv")
 write.csv(last20,"ensemble1_last20.csv")
 write.csv(monthly,"monthlyglobaldev.csv")
+write.csv(annual,"annualensemble1.csv")
 library(maps)
 qplot(long,lat,data=jan2012,fill=value, geom="tile",xlim=c(-180,180),ylim=c(-90,90))+ theme(aspect.ratio=1/2)+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
 # adding +scale_fill_brewer(palette="Spectral")    should change the palette, but it borks

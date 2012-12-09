@@ -25,3 +25,6 @@ recent<-subset(monthly, fixedtime>1990)
 qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se=FALSE,color="red")
 recent<-subset(monthly, year(fixedtime)>1975)
 qplot(fixedtime,anomaly,data=recent) + geom_smooth(method="lm", se=FALSE)
+
+
+annual<-read.csv("annualensemble1.csv")
