@@ -14,6 +14,7 @@
 jan<-read.csv("ensemble1_jan.csv")
 last20<-read.csv("ensemble1_last20.csv")
 monthly<-read.csv("monthlyglobaldev.csv")
+
 suppressMessages(library(ggplot2))
 suppressMessages(library(lubridate))
 suppressMessages(library(RColorBrewer))
@@ -42,6 +43,7 @@ This is still being worked on. There will be some discussion (without modeling) 
 \begin{figure}[htb!]
 <<plot-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
+
 qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se=FALSE,color="red")
 @
 \caption{\label{trend}Time series of global temperature anomalies, 1850-present.}
@@ -52,6 +54,7 @@ There will also be a discussion of what the recent data look like, in light of t
 \begin{figure}[!htb]
 <<recent-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
+
 qplot(fixedtime,anomaly,data=recent, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
 @
 \caption{\label{recenttrend}Time series of global temperature anomalies, 1975-present.}
@@ -64,8 +67,9 @@ There will also be a few maps of some specific time periods. This is the latest 
 suppressMessages(library(ggplot2))
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
 q<-ggplot()
+
 q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+q<-q+geom_tile(data=sep2012, aes(x=(long+2.5),y=(lat+2.5),fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 print(q)
 @
 \caption{\label{sep2012map}Map of temperature anomalies for September 2012}

@@ -1,6 +1,6 @@
-lubridate
-RColorBrewer
 maps
+RColorBrewer
+lubridate
 mgcv
 ggplot2
 knitr
