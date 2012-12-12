@@ -1,8 +1,8 @@
-maps
-RColorBrewer
-lubridate
-mgcv
 ggplot2
+lubridate
+RColorBrewer
+maps
+mgcv
 knitr
 stats
 graphics

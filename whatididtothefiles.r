@@ -26,7 +26,10 @@ last20$lat<-(90-last20$yloc*5)
 annual$long<-(180-annual$xloc*5)
 annual$lat<-(90-annual$yloc*5)
 
+ensemble1$long<-(ensemble1$xloc*5)
+ensemble1$lat<-(90-ensemble1$yloc*5)
 
+write.csv(ensemble1,"ensemble1.csv")
 
 jan2012<-subset(jan,realyear==2012)
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
@@ -55,3 +58,25 @@ q<-ggplot()
 q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)
 q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")
 q
+
+
+%did this much later
+ensemble1$fixedyear<- ensemble1$year +1849
+ensemble1$fixedtime<-paste(ensemble1$month,ensemble1$fixedyear,sep="/1/")
+ensemble1<-subset(ensemble1, select= -X.1)
+head(ensemble1)
+write.csv(ensemble1,"ensemble1.csv")
+
+
+onlyfornow<-read.csv("ensemble1.csv")
+onlyfornow$realyear<-onlyfornow$year+1849
+onlyfornow$fixedyear<-onlyfornow$realyear
+onlyfornow<-subset(onlyfornow,select= -c(X.1,X))
+write.csv(onlyfornow,"ensemble1.csv")
+storycounty<-subset(onlyfornow,lat==40 & long==-95 & realyear>1865)
+write.csv(storycounty,"storycounty.csv")
+augsburg<-subset(onlyfornow,lat==50 & long==10)
+write.csv(augsburg,"augsburg.csv")
+antarctica<-subset(onlyfornow,lat==-75 & long==15 & realyear>1960)
+write.csv(antarctica,"antarctica.csv")
+
