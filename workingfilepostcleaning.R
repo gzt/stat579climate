@@ -36,3 +36,4 @@ year2000<-year2000+geom_tile(data=y2k, aes(x=(long+2.5),y=(lat+2.5),fill=newvalu
 year2000
 
 summary(subset(annual, realyear==2000))
+

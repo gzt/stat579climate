@@ -3,6 +3,7 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{enumerate}
+\usepackage{float}
 \title{Global Temperature Anomalies}
 \author{Geoffrey Thompson and Sam Benidt}
 \date{12/14/2012}
@@ -39,23 +40,129 @@ storycounty$fixedtime<-ymd(storycounty$fixedtime)
 
 antarctica<-read.csv("antarctica.csv")
 antarctica$fixedtime<-ymd(antarctica$fixedtime)
-
 @
 
+\begin{figure}[H]
+<<recent-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
+suppressMessages(library(ggplot2))
+sep2012<-subset(last20,((realyear==2012)&(month==9)))
 
+q<-ggplot()
+q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+q<-q+geom_tile(data=sep2012, aes(x=(long-2.5),y=(lat+2.5),fill=value, alpha=.8))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+print(q)
+@
+\caption{\label{sep2012map}Map of temperature anomalies for September 2012}
+\end{figure}
 
 \section{Introduction}
-The consensus of climate scientists is that the world has been warming since the Industrial Revolution and that it has been warming faster over the last several decades. The warming is not uniform - the poles are in general are warming much faster than the tropics. The rate of warming has also not been been increasing at a uniform rate over time. For example, the twenty periods from 1925-1944 and from 1978-1997 have seen the largest increases in temperature throughout the period of the twenieth century. We will be analyzing the HADCRUT4 temperature dataset which has a monthly record of temperature anomalies from a respective 1960-1991 baseline on a $5^{\circ}$ by $5^{\circ}$ gridded basis going back to 1850.  Using this dataset we will graphically explore when and where temperatures have been changing and by how much over the past 162 years. The HADCRUT4 dataset was the subject of some controversy in October when a journalist claimed the data showed no increase in temperature over the last 16 years (1997-2012). We will also attempt to graphically look further into this claim.
+
+The consensus of climate scientists is that the world has been warming since the Industrial Revolution and that it has been warming faster over the last several decades. The warming is not uniform - the poles are in general are warming much faster than the tropics. The rate of warming has also not been been increasing at a uniform rate over time. For example, the twenty periods from 1925-1944 and from 1978-1997 have seen the largest increases in temperature throughout the period of the twentieth century. We will be analyzing the HADCRUT4 temperature dataset which has a monthly record of temperature anomalies from a respective 1960-1991 baseline on a $5^{\circ}$ by $5^{\circ}$ gridded basis going back to 1850.  Using this dataset we will graphically explore when and where temperatures have been changing and by how much over the past 162 years. The HADCRUT4 dataset was the subject of some controversy in October when a journalist claimed the data showed no increase in temperature over the last 16 years (1997-2012). We will also attempt to graphically look further into this claim.
 
 \section{Description of Data and Source:}
 We pulled data on temperature deviations from a 1961 to 1990 temperature trend from the HADCRUT4 near surface temperature data set found at: \url{http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/download.html}.\\ This data is hosted by the Met Office Hadley Centre. The HADCRUT4 dataset combines data from the  CRUTEM4 and HadSST3 which contain data based on surface air temperature and sea-surface temperature respectively. The data is reported in 100 ensembles. We chose to look at the first ensemble dataset, which was a choice on convenience due to the large nature of each individual ensemble dataset. However, we hope that the same type of analysis recorded here could be used and would be applicable on any of the 100 ensembles.  The Global temperature trend was also downloaded which is computed from average of the Northern and Southern Hemispheres ((NH +SH)/2).
 
 \section{Data Cleaning/Formatting:}
 The temperature deviation data for ensemble 1 was downloaded in a spaced delimited ASCII file.  The ASCII file was opened up in Microsoft Excel and parsed to create a CSV file that contained meta data for the first month of 1850 on the first row followed by 36 rows and 72 columns of temperature deviations where the entry in row i and column j represented a measurement of temperature deviation for each latitude and longitude. This was followed by another row of metadata describing the second month of 1850 following by the same 36 rows by 72 columns of temperature deviations and so on. The CSV file was read into R. Each 37th row was deleted (including the first row) since those rows contained meta data. The variables time (in months since 1850), xloc, months (month of year), year(years since 1850). The data were reshaped to using the melt function keeping the variables time, xloc, months, year, and temp, allowing the yloc variable to be formed.  The variables real year and latitude and longitude were introduced to the data set through an appropriate transformation of the variables $year$, $xloc$, and $yloc$.
+
 Global montly temperature deviation data was downloaded as well. However, there was not much work needed to put the data into a useable format.
 
 \section{Main Section:}
-Anomalies vs. Absolute Temperature
+\subsection*{Increased World Coverage}
+The data are a worldwide data set spanning from 1850 to the present, but large portions of the world were still unexplored. The first explorer only set foot on Antarctica in 1840 (or 1821, depending on which account you believe) and reached the south pole in 1911. Whether or not a spot has a set of temperature records in a given year indicates whether scientific meteorology has made it there. In 1850, the records were spotty except in Europe and on the seas.
+\begin{figure}[H]
+<<chunk2, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=8, out.width='\\linewidth'>>=
+suppressMessages(library(ggplot2))
+suppressMessages(library(grid))
+year1850<-subset(annual,realyear==1850)
+library(ggplot2)
+plot1850<-ggplot()
+plot1850 <- plot1850 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1850<-plot1850+geom_tile(data=year1850, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year1875<-subset(annual,realyear==1875)
+
+plot1875<-ggplot()
+plot1875 <- plot1875 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1875<-plot1875+geom_tile(data=year1875, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year1900<-subset(annual,realyear==1900)
+
+plot1900<-ggplot()
+plot1900 <- plot1900 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1900<-plot1900+geom_tile(data=year1900, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year1925<-subset(annual,realyear==1925)
+
+plot1925<-ggplot()
+plot1925 <- plot1925 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1925<-plot1925+geom_tile(data=year1925, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year1950<-subset(annual,realyear==1950)
+
+plot1950<-ggplot()
+plot1950 <- plot1950 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1950<-plot1950+geom_tile(data=year1950, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year1975<-subset(annual,realyear==1975)
+
+plot1975<-ggplot()
+plot1975 <- plot1975 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot1975<-plot1975+geom_tile(data=year1975, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year2000<-subset(annual,realyear==2000)
+
+plot2000<-ggplot()
+plot2000 <- plot2000 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot2000<-plot2000+geom_tile(data=year2000, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+
+year2012<-subset(annual,realyear==2012)
+
+plot2012<-ggplot()
+plot2012 <- plot2012 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
+plot2012<-plot2012+geom_tile(data=year2012, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
+  require(grid)
+
+  # Make a list from the ... arguments and plotlist
+  plots <- c(list(...), plotlist)
+
+  numPlots = length(plots)
+
+  # If layout is NULL, then use 'cols' to determine layout
+  if (is.null(layout)) {
+    # Make the panel
+    # ncol: Number of columns of plots
+    # nrow: Number of rows needed, calculated from # of cols
+    layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
+                    ncol = cols, nrow = ceiling(numPlots/cols))
+  }
+
+ if (numPlots==1) {
+    print(plots[[1]])
+
+  } else {
+    # Set up the page
+    grid.newpage()
+    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+
+    # Make each plot, in the correct location
+    for (i in 1:numPlots) {
+      # Get the i,j matrix positions of the regions that contain this subplot
+      matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
+
+      print(plots[[i]], vp = viewport(layout.pos.row = matchidx$row,
+                                      layout.pos.col = matchidx$col))
+    }
+  }
+}
+multiplot(plot1850,plot1875,plot1900,plot1925,plot1950,plot1975,plot2000,plot2012,cols=2)
+@
+\end{figure}
+
+However, as time passes, the interior of the continents are filled in more until 2012, when only the most remote and uninhabitable areas are neglected, such as the Sahara and the polar regions.
+
+\subsection*{Anomalies vs. Absolute Temperature}
 The data presented here are recorded with respect to the 1961-1990 period.  The 1961-1990 period was chosen by the researchers who created this data set since it has some of most consistent data in terms of complete coverage of temperature values. For each station used, the baseline average over 1961-1990 was computed in order to record temperature anomalies by that station per month.
 
 This is good for a few reasons of comparability:
@@ -149,18 +256,7 @@ print(q)
 @
 
 
-\begin{figure}[!h]
-<<recent-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
-suppressMessages(library(ggplot2))
-sep2012<-subset(annual,realyear==2012)
 
-q<-ggplot()
-q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
-print(q)
-@
-\caption{\label{sep2012map}Map of temperature anomalies for September 2012}
-\end{figure}
 
 \section{Conclusion:}
 There will be some kind of conclusion.

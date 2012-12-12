@@ -79,4 +79,12 @@ augsburg<-subset(onlyfornow,lat==50 & long==10)
 write.csv(augsburg,"augsburg.csv")
 antarctica<-subset(onlyfornow,lat==-75 & long==15 & realyear>1960)
 write.csv(antarctica,"antarctica.csv")
+head(annual)
+
+for(i in 1:length(annual$value)){
+annual$anomaly[i]<-min(annual$value[i],3)
+annual$anomaly[i]<-max(annual$anomaly[i],-3)}
+write.csv(annual,"annualensemble1.csv")
+
+head(last20)
 
