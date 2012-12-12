@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.1.18)  12 DEC 2012 12:29
+This is pdfTeX, Version 3.1415926-1.40.10 (MiKTeX 2.8) (preloaded format=pdflatex 2011.1.18)  12 DEC 2012 17:42
 entering extended mode
 **draft_4.tex
 (C:\Users\gzt\Documents\GitHub\stat579climate\draft_4.tex
@@ -228,108 +228,78 @@ Package color Info: Redefining color shadecolor on input line 98.
 File: figure/chunk2.pdf Graphic file (type pdf)
  <use figure/chunk2.pdf>
 [2] [3 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/chunk2.pdf>]
-Package color Info: Redefining color shadecolor on input line 119.
+Package color Info: Redefining color shadecolor on input line 120.
 
 <figure/plot-trend.pdf, id=47, 361.35pt x 216.81pt>
 File: figure/plot-trend.pdf Graphic file (type pdf)
 
-<use figure/plot-trend.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 119--121
-[][]
- []
+<use figure/plot-trend.pdf> [4]
+Package color Info: Redefining color shadecolor on input line 129.
 
-[4 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/plot-trend.pdf>]
-Package color Info: Redefining color shadecolor on input line 127.
-
-<figure/15-years.pdf, id=58, 361.35pt x 216.81pt>
+<figure/15-years.pdf, id=51, 361.35pt x 216.81pt>
 File: figure/15-years.pdf Graphic file (type pdf)
  <use figure/15-years.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 127--129
-[][]
- []
+[5 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/plot-trend.pdf>]
+Package color Info: Redefining color shadecolor on input line 139.
 
-Package color Info: Redefining color shadecolor on input line 134.
-<figure/recent-trend.pdf, id=59, 361.35pt x 216.81pt>
+<figure/recent-trend.pdf, id=62, 361.35pt x 216.81pt>
 File: figure/recent-trend.pdf Graphic file (type pdf)
 
-<use figure/recent-trend.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 134--136
-[][]
- []
-
-[5 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/15-years.pdf>]
-Package color Info: Redefining color shadecolor on input line 148.
-
-<figure/story-trend.pdf, id=70, 361.35pt x 216.81pt>
+<use figure/recent-trend.pdf> [6 <C:/Users/gzt/Documents/GitHub/stat579climate/
+figure/15-years.pdf>]
+Package color Info: Redefining color shadecolor on input line 155.
+ <figure/story-trend.pdf, id=73, 361.35pt x 216.81pt>
 File: figure/story-trend.pdf Graphic file (type pdf)
 
-<use figure/story-trend.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 148--150
-[][]
- []
+<use figure/story-trend.pdf> [7 <C:/Users/gzt/Documents/GitHub/stat579climate/f
+igure/recent-trend.pdf>]
+Package color Info: Redefining color shadecolor on input line 164.
 
-[6 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/recent-trend.pdf>]
-Package color Info: Redefining color shadecolor on input line 155.
-
-<figure/augsburg-trend.pdf, id=81, 433.62pt x 289.08pt>
+<figure/augsburg-trend.pdf, id=85, 433.62pt x 289.08pt>
 File: figure/augsburg-trend.pdf Graphic file (type pdf)
 
-<use figure/augsburg-trend.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 155--157
-[][]
- []
+<use figure/augsburg-trend.pdf> [8 <C:/Users/gzt/Documents/GitHub/stat579climat
+e/figure/story-trend.pdf>]
+Package color Info: Redefining color shadecolor on input line 176.
 
-Package color Info: Redefining color shadecolor on input line 166.
-<figure/antartic-trend.pdf, id=82, 433.62pt x 289.08pt>
+<figure/antartic-trend.pdf, id=96, 433.62pt x 289.08pt>
 File: figure/antartic-trend.pdf Graphic file (type pdf)
 
-<use figure/antartic-trend.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 166--168
-[][]
- []
+<use figure/antartic-trend.pdf> [9 <C:/Users/gzt/Documents/GitHub/stat579climat
+e/figure/augsburg-trend.pdf>]
+Package color Info: Redefining color shadecolor on input line 186.
 
-[7 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/story-trend.pdf> <C:/Us
-ers/gzt/Documents/GitHub/stat579climate/figure/augsburg-trend.pdf>]
-Package color Info: Redefining color shadecolor on input line 175.
-
-<figure/1978-map.pdf, id=101, 578.16pt x 361.35pt>
+<figure/1978-map.pdf, id=107, 578.16pt x 361.35pt>
 File: figure/1978-map.pdf Graphic file (type pdf)
  <use figure/1978-map.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 175--177
-[][]
- []
+[10 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/antartic-trend.pdf>]
+Package color Info: Redefining color shadecolor on input line 196.
 
-Package color Info: Redefining color shadecolor on input line 182.
-<figure/1997-map.pdf, id=102, 578.16pt x 361.35pt> [8 <C:/Users/gzt/Documents/G
-itHub/stat579climate/figure/antartic-trend.pdf> <C:/Users/gzt/Documents/GitHub/
-stat579climate/figure/1978-map.pdf>]
-File: figure/1997-map.pdf Graphic file (type pdf)
- <use figure/1997-map.pdf>
-Overfull \hbox (15.0pt too wide) in paragraph at lines 182--184
-[][]
- []
+<figure/second1997map.pdf, id=118, 578.16pt x 361.35pt>
+File: figure/second1997map.pdf Graphic file (type pdf)
 
-[9 <C:/Users/gzt/Documents/GitHub/stat579climate/figure/1997-map.pdf>]
-(C:\Users\gzt\Documents\GitHub\stat579climate\draft_4.aux) ) 
+<use figure/second1997map.pdf> [11 <C:/Users/gzt/Documents/GitHub/stat579climat
+e/figure/1978-map.pdf> <C:/Users/gzt/Documents/GitHub/stat579climate/figure/sec
+ond1997map.pdf>] [12] (C:\Users\gzt\Documents\GitHub\stat579climate\draft_4.aux
+) ) 
 Here is how much of TeX's memory you used:
- 2618 strings out of 495285
- 40649 string characters out of 3179833
+ 2627 strings out of 495285
+ 40784 string characters out of 3179833
  99678 words of memory out of 3000000
- 5813 multiletter control sequences out of 15000+200000
+ 5822 multiletter control sequences out of 15000+200000
  7755 words of font info for 28 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,7n,38p,1138b,258s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files (
-x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x8
-6)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)
-/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/Mi
-KTeX 2.8/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTe
-X 2.8/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2
-.8/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files (x86)/MiKTeX 2.8/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on draft_4.pdf (9 pages, 1719050 bytes).
+<C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmbx12.pfb
+><C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
+C:/Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/
+Program Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program F
+iles (x86)/MiKTeX 2.8/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on draft_4.pdf (12 pages, 1715132 bytes).
 PDF statistics:
- 159 PDF objects out of 1000 (max. 8388607)
+ 168 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

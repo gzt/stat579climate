@@ -77,50 +77,50 @@ suppressMessages(library(grid))
 year1850<-subset(annual,realyear==1850)
 library(ggplot2)
 plot1850<-ggplot()
-plot1850 <- plot1850 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1850<-plot1850+geom_tile(data=year1850, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1850 <- plot1850 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1850<-plot1850+geom_tile(data=year1850, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year1875<-subset(annual,realyear==1875)
 
 plot1875<-ggplot()
-plot1875 <- plot1875 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1875<-plot1875+geom_tile(data=year1875, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1875 <- plot1875 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1875<-plot1875+geom_tile(data=year1875, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year1900<-subset(annual,realyear==1900)
 
 plot1900<-ggplot()
-plot1900 <- plot1900 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1900<-plot1900+geom_tile(data=year1900, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1900 <- plot1900 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1900<-plot1900+geom_tile(data=year1900, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year1925<-subset(annual,realyear==1925)
 
 plot1925<-ggplot()
-plot1925 <- plot1925 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1925<-plot1925+geom_tile(data=year1925, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1925 <- plot1925 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1925<-plot1925+geom_tile(data=year1925, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year1950<-subset(annual,realyear==1950)
 
 plot1950<-ggplot()
-plot1950 <- plot1950 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1950<-plot1950+geom_tile(data=year1950, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1950 <- plot1950 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1950<-plot1950+geom_tile(data=year1950, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year1975<-subset(annual,realyear==1975)
 
 plot1975<-ggplot()
-plot1975 <- plot1975 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot1975<-plot1975+geom_tile(data=year1975, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1975 <- plot1975 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot1975<-plot1975+geom_tile(data=year1975, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year2000<-subset(annual,realyear==2000)
 
 plot2000<-ggplot()
-plot2000 <- plot2000 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot2000<-plot2000+geom_tile(data=year2000, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot2000 <- plot2000 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot2000<-plot2000+geom_tile(data=year2000, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 
 year2012<-subset(annual,realyear==2012)
 
 plot2012<-ggplot()
-plot2012 <- plot2012 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-plot2012<-plot2012+geom_tile(data=year2012, aes(x=long,y=lat,fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot2012 <- plot2012 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
+plot2012<-plot2012+geom_tile(data=year2012, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
 
@@ -156,8 +156,9 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
     }
   }
 }
-multiplot(plot1850,plot1875,plot1900,plot1925,plot1950,plot1975,plot2000,plot2012,cols=2)
+multiplot(plot1850,plot1900,plot1950,plot2000,plot1875,plot1925,plot1975,plot2012,cols=2)
 @
+\caption{\label{multiyearmap}Maps of temperature anomalies for 1850-2012}
 \end{figure}
 
 However, as time passes, the interior of the continents are filled in more until 2012, when only the most remote and uninhabitable areas are neglected, such as the Sahara and the polar regions.
@@ -174,27 +175,33 @@ This is good for a few reasons of comparability:
 Taken together, using temperature anomalies allows for comparability between the locations.
 
 The graph below gives the overall deviation in degrees from the 1961 to 1990 trend line by month. Points plotted below zero represent an average temperature below the 1961 to 1990 trend and points plotted above zero represents an average temperature above the trend line. As can be seen, the vast majority of months from 1850 to 1950 have negative deviations indicating that temperatures from that time period were slightly cooler than the trend of temperatures from 1961 to 1990. Starting around the 1970's to 1980's most of the anomalies start to increase such that by 2010 the temperature anomoly is hoving at about 0.5 degrees above the 1961 to 1990 trend line.
-
+\begin{figure}[H]
 <<plot-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se=FALSE,color="red")
 @
-
+\caption{\label{alltopresent}Time series of global temperature anomalies 1850-present}
+\end{figure}
 Over the past 16 years, there has been a general plateau in the increase in global temperatures that has been occuring over the past century. As can been by the fitted linear line below, the line is relatively flat indicating that no significant amount of warming has occurred globally over the past 16 years. Some skeptics have pointed to this stagnant trend of no temperature increase as evidence that we should not worry about the effects of climate change. However, we would like to point out that warming may return in the future. Further, even though we are currently in a trend of stagnating temperatures, we are not seeing any decrease in the overall temperature trend. Meaning that we are still living with the increased temperatures from previous warming periods during the twentieth century.
 
-
+\begin{figure}[H]
 <<15-years, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,anomaly,data=recent97, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
 @
+\caption{\label{last16}Time series of temperature anomalies for last 16 years}
+\end{figure}
 
 Indeed, if we were to extend the range back to 1975, we would see a much different picture of warming trends. A linear line over the 1975-2012 period sees a much larger increase in temperature due to the warming period during 1978-1997.
 
+\begin{figure}[H]
 <<recent-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3,out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,anomaly,data=recent, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
 @
+\caption{\label{1975topresent}Time series of temperature anomalies for 1975 to present}
+\end{figure}
 
 After looking at global temperature trends, we decided it would be interesting to check out trends in certain locations of interest. As such, we decided to look into the temperature data for Story County.
 
@@ -204,57 +211,65 @@ One general thing for this graph that is true for all the other graphs of indivi
 % This is lat=40 and long=-95 in our dataset
 %Latitude and longitude for Augsburg Germany is 48.3647? N, 10.8953? E
 % closest is lat=50 and long=10
-
+\begin{figure}[H]
 <<story-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3,out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,value,data=storycounty,geom="line",color=value,na.rm=T) + geom_smooth(se=FALSE,color="red",na.rm=T)
 @
+\caption{\label{storycount}Time series of temperature anomalies for Story County, IA}
+\end{figure}
 
 The trend for Augsburg, Germany is also increasing over time. However, as compared to Story County, Augsburg has had more months with large negative anomalies as compared to large positive anomalies.
-
+\begin{figure}[H]
 <<augsburg-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=6, fig.height=4, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,value,data=augsburg,geom="line",color=value) + geom_smooth(se=FALSE,color="red")
 @
-
+\caption{\label{augsburg}Time series of temperature anomalies for Augsburg, Germany.}
+\end{figure}
 
 %Chose point in Antartica that actually had data values lat==-75 & long==15
 
 To look at the polar regions, we choose a point with a latitude of 75 degrees South and 15 degrees East. Again, the polor region here is experiencing a warming trend.
 
-
+\begin{figure}[H]
 <<antartic-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=6, fig.height=4, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,value,data=antarctica,geom="line",color=value,na.rm=T) + geom_smooth(se=FALSE,color="red",na.rm=T) 
 @
-
+\caption{\label{antarctica}Time series of temperature anomalies for a station in Antarctica, 1960-present.}
+\end{figure}
 
 Next, we found some interesting maps of the world colored by anomaly. Note that not every grid point has an entry and that not every grid point is greater than 0. An interesting comparison in time is between 1978 and 1997 which marked the beginning and conclusion of a substantial warming period during the twentient century. As can be noted in the 1978 map, a significantly larger portion of the map is shaded in blue, while in the 1997 those blue areas change to a neutral white. 
 
-
+\begin{figure}[H]
 <<1978-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 sep2012<-subset(annual,realyear==1978)
 q<-ggplot()
 q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 print(q)
 @
+\caption{\label{1978map}Map of temperature anomalies for 1978}
+\end{figure}
 
+I'm throwing in some stuff here and hoping this will make it work.
 
-
-<<1997-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
+\begin{figure}[H]
+<<second1997map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
-sep2012<-subset(annual,realyear==1997)
+sep2012<-subset(last20,(realyear==1997 & month==8))
 
 q<-ggplot()
 q <- q + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 15))+scale_x_continuous(breaks=seq(-180, 180, 15))
-q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.25))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+q<-q+geom_tile(data=sep2012, aes(x=long,y=lat,fill=value, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
 print(q)
 @
-
+\caption{\label{another1997map}Map of temperature anomalies for Summer 1997}
+\end{figure}
 
 
 

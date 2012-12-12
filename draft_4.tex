@@ -98,6 +98,7 @@ The data are a worldwide data set spanning from 1850 to the present, but large p
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/chunk2} 
 \end{knitrout}
 
+\caption{\label{multiyearmap}Maps of temperature anomalies for 1850-2012}
 \end{figure}
 
 However, as time passes, the interior of the continents are filled in more until 2012, when only the most remote and uninhabitable areas are neglected, such as the Sahara and the polar regions.
@@ -114,26 +115,32 @@ This is good for a few reasons of comparability:
 Taken together, using temperature anomalies allows for comparability between the locations.
 
 The graph below gives the overall deviation in degrees from the 1961 to 1990 trend line by month. Points plotted below zero represent an average temperature below the 1961 to 1990 trend and points plotted above zero represents an average temperature above the trend line. As can be seen, the vast majority of months from 1850 to 1950 have negative deviations indicating that temperatures from that time period were slightly cooler than the trend of temperatures from 1961 to 1990. Starting around the 1970's to 1980's most of the anomalies start to increase such that by 2010 the temperature anomoly is hoving at about 0.5 degrees above the 1961 to 1990 trend line.
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/plot-trend} 
 \end{knitrout}
 
-
+\caption{\label{alltopresent}Time series of global temperature anomalies 1850-present}
+\end{figure}
 Over the past 16 years, there has been a general plateau in the increase in global temperatures that has been occuring over the past century. As can been by the fitted linear line below, the line is relatively flat indicating that no significant amount of warming has occurred globally over the past 16 years. Some skeptics have pointed to this stagnant trend of no temperature increase as evidence that we should not worry about the effects of climate change. However, we would like to point out that warming may return in the future. Further, even though we are currently in a trend of stagnating temperatures, we are not seeing any decrease in the overall temperature trend. Meaning that we are still living with the increased temperatures from previous warming periods during the twentieth century.
 
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/15-years} 
 \end{knitrout}
 
+\caption{\label{last16}Time series of temperature anomalies for last 16 years}
+\end{figure}
 
 Indeed, if we were to extend the range back to 1975, we would see a much different picture of warming trends. A linear line over the 1975-2012 period sees a much larger increase in temperature due to the warming period during 1978-1997.
 
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/recent-trend} 
 \end{knitrout}
 
+\caption{\label{1975topresent}Time series of temperature anomalies for 1975 to present}
+\end{figure}
 
 After looking at global temperature trends, we decided it would be interesting to check out trends in certain locations of interest. As such, we decided to look into the temperature data for Story County.
 
@@ -143,46 +150,54 @@ One general thing for this graph that is true for all the other graphs of indivi
 % This is lat=40 and long=-95 in our dataset
 %Latitude and longitude for Augsburg Germany is 48.3647? N, 10.8953? E
 % closest is lat=50 and long=10
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/story-trend} 
 \end{knitrout}
 
+\caption{\label{storycount}Time series of temperature anomalies for Story County, IA}
+\end{figure}
 
 The trend for Augsburg, Germany is also increasing over time. However, as compared to Story County, Augsburg has had more months with large negative anomalies as compared to large positive anomalies.
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/augsburg-trend} 
 \end{knitrout}
 
-
+\caption{\label{augsburg}Time series of temperature anomalies for Augsburg, Germany.}
+\end{figure}
 
 %Chose point in Antartica that actually had data values lat==-75 & long==15
 
 To look at the polar regions, we choose a point with a latitude of 75 degrees South and 15 degrees East. Again, the polor region here is experiencing a warming trend.
 
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/antartic-trend} 
 \end{knitrout}
 
-
+\caption{\label{antarctica}Time series of temperature anomalies for a station in Antarctica, 1960-present.}
+\end{figure}
 
 Next, we found some interesting maps of the world colored by anomaly. Note that not every grid point has an entry and that not every grid point is greater than 0. An interesting comparison in time is between 1978 and 1997 which marked the beginning and conclusion of a substantial warming period during the twentient century. As can be noted in the 1978 map, a significantly larger portion of the map is shaded in blue, while in the 1997 those blue areas change to a neutral white. 
 
-
+\begin{figure}[H]
 \begin{knitrout}
 \definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/1978-map} 
 \end{knitrout}
 
+\caption{\label{1978map}Map of temperature anomalies for 1978}
+\end{figure}
 
+I'm throwing in some stuff here and hoping this will make it work.
 
-
+\begin{figure}[H]
 \begin{knitrout}
-\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/1997-map} 
+\definecolor{shadecolor}{rgb}{0.969, 0.969, 0.969}\color{fgcolor}\includegraphics[width=\linewidth]{figure/second1997map} 
 \end{knitrout}
 
-
+\caption{\label{another1997map}Map of temperature anomalies for Summer 1997}
+\end{figure}
 
 
 

@@ -1,8 +1,8 @@
+lubridate
+RColorBrewer
+maps
 grid
 mgcv
-maps
-RColorBrewer
-lubridate
 ggplot2
 knitr
 stats
