@@ -43,7 +43,7 @@ antarctica$fixedtime<-ymd(antarctica$fixedtime)
 @
 
 \begin{figure}[H]
-<<recent-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
+<<recent-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 sep2012<-subset(last20,((realyear==2012)&(month==9)))
 
@@ -57,70 +57,67 @@ print(q)
 
 \section{Introduction}
 
-The consensus of climate scientists is that the world has been warming since the Industrial Revolution and that it has been warming faster over the last several decades. The warming is not uniform - the poles are in general are warming much faster than the tropics. The rate of warming has also not been been increasing at a uniform rate over time. For example, the twenty periods from 1925-1944 and from 1978-1997 have seen the largest increases in temperature throughout the period of the twentieth century. We will be analyzing the HADCRUT4 temperature dataset which has a monthly record of temperature anomalies from a respective 1960-1991 baseline on a $5^{\circ}$ by $5^{\circ}$ gridded basis going back to 1850.  Using this dataset we will graphically explore when and where temperatures have been changing and by how much over the past 162 years. The HADCRUT4 dataset was the subject of some controversy in October when a journalist claimed the data showed no increase in temperature over the last 16 years (1997-2012). We will also attempt to graphically look further into this claim.
+The consensus of climate scientists is that the world has been warming since the Industrial Revolution and that it has been warming faster over the last several decades. This warming is not uniform - the poles are in general are warming much faster than the tropics. The rate of warming has also not been been increasing at a uniform rate over time. For example, the twenty year periods from 1925-1944 and from 1978-1997 have seen the largest increases in temperature throughout the period of the twentieth century. We will be analyzing the HADCRUT4 temperature dataset which has a monthly record of temperature anomalies from a respective 1960-1991 baseline on a $5^{\circ}$ by $5^{\circ}$ gridded basis going back to 1850.  Using this dataset we will graphically explore when and where temperatures have been changing and by how much over the past 162 years. The HADCRUT4 dataset was the subject of some controversy in October when a journalist claimed the data showed no increase in temperature over the last 16 years (1997-2012). We will also attempt to graphically look further into this claim.
 
 \section{Description of Data and Source:}
-We pulled data on temperature deviations from a 1961 to 1990 temperature trend from the HADCRUT4 near surface temperature data set found at: \url{http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/download.html}.\\ This data is hosted by the Met Office Hadley Centre. The HADCRUT4 dataset combines data from the  CRUTEM4 and HadSST3 which contain data based on surface air temperature and sea-surface temperature respectively. The data is reported in 100 ensembles. We chose to look at the first ensemble dataset, which was a choice on convenience due to the large nature of each individual ensemble dataset. However, we hope that the same type of analysis recorded here could be used and would be applicable on any of the 100 ensembles.  The Global temperature trend was also downloaded which is computed from average of the Northern and Southern Hemispheres ((NH +SH)/2).
+We pulled data on temperature deviations from the overall 1961 to 1990 temperature trend for each temperature station from the HADCRUT4 near surface temperature data set found at: \url{http://www.metoffice.gov.uk/hadobs/hadcrut4/data/current/download.html}.\\ This data is hosted by the Met Office Hadley Centre. The HADCRUT4 dataset combines data from the  CRUTEM4 and HadSST3 which contain data based on surface air temperature and sea-surface temperature respectively. The data is reported in 100 ensembles. We chose to look at the first ensemble dataset, which was a choice on convenience due to the large nature of each individual ensemble dataset. However, we hope that the same type of analysis recorded here could be used and would be applicable on any of the 100 ensembles.  The Global temperature trend was also downloaded which is computed from average of the trends for the Northern and Southern Hemisphere ((NH +SH)/2).
 
 \section{Data Cleaning/Formatting:}
-The temperature deviation data for ensemble 1 was downloaded in a spaced delimited ASCII file.  The ASCII file was opened up in Microsoft Excel and parsed to create a CSV file that contained meta data for the first month of 1850 on the first row followed by 36 rows and 72 columns of temperature deviations where the entry in row i and column j represented a measurement of temperature deviation for each latitude and longitude. This was followed by another row of metadata describing the second month of 1850 following by the same 36 rows by 72 columns of temperature deviations and so on. The CSV file was read into R. Each 37th row was deleted (including the first row) since those rows contained meta data. The variables time (in months since 1850), xloc, months (month of year), year(years since 1850). The data were reshaped to using the melt function keeping the variables time, xloc, months, year, and temp, allowing the yloc variable to be formed.  The variables real year and latitude and longitude were introduced to the data set through an appropriate transformation of the variables $year$, $xloc$, and $yloc$.
-
-Global montly temperature deviation data was downloaded as well. However, there was not much work needed to put the data into a useable format.
+The temperature deviation data for ensemble 1 was downloaded in a spaced delimited ASCII file.  The ASCII file was opened up in Microsoft Excel and parsed to create a CSV file that contained meta data for the first month of 1850 on the first row, followed by 36 rows and 72 columns of temperature deviations where the entry in row i and column j represented a measurement of temperature deviation for each latitude and longitude. This was followed by another row of metadata describing the second month of 1850 followed by the same 36 rows by 72 columns of temperature deviations and so on for each month. The CSV file was read into R. Each 37th row was deleted (including the first row) since those rows contained meta data. The variables time (in months since 1850), xloc, months (month of year), year(years since 1850). The data were reshaped to using the melt function keeping the variables time, xloc, months, year, and temp, allowing the yloc variable to be formed.  The variables real year and latitude and longitude were introduced to the data set through an appropriate transformation of the variables $year$, $xloc$, and $yloc$. Finally, we able to transform the year and month variables into actual dates using the lubridate package. Global montly temperature deviation data was downloaded as well. However, there was not much work needed to put the data into a useable format besided using the lubridate package again to transform the date variables.
 
 \section{Main Section:}
 \subsection*{Increased World Coverage}
 The data are a worldwide data set spanning from 1850 to the present, but large portions of the world were still unexplored. The first explorer only set foot on Antarctica in 1840 (or 1821, depending on which account you believe) and reached the south pole in 1911. Whether or not a spot has a set of temperature records in a given year indicates whether scientific meteorology has made it there. In 1850, the records were spotty except in Europe and on the seas.
-\begin{figure}[H]
-<<chunk2, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=8, out.width='\\linewidth'>>=
+\begin{figure}
+<<chunk2, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=30, fig.height=45, out.width='\\textwidth', out.height='.8\\textheight'>>=
 suppressMessages(library(ggplot2))
 suppressMessages(library(grid))
 year1850<-subset(annual,realyear==1850)
-library(ggplot2)
 plot1850<-ggplot()
 plot1850 <- plot1850 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1850<-plot1850+geom_tile(data=year1850, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1850<-plot1850+geom_tile(data=year1850, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide=FALSE)+theme_bw()
 
 year1875<-subset(annual,realyear==1875)
 
 plot1875<-ggplot()
 plot1875 <- plot1875 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1875<-plot1875+geom_tile(data=year1875, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1875<-plot1875+geom_tile(data=year1875, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year1900<-subset(annual,realyear==1900)
 
 plot1900<-ggplot()
 plot1900 <- plot1900 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1900<-plot1900+geom_tile(data=year1900, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1900<-plot1900+geom_tile(data=year1900, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year1925<-subset(annual,realyear==1925)
 
 plot1925<-ggplot()
 plot1925 <- plot1925 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1925<-plot1925+geom_tile(data=year1925, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1925<-plot1925+geom_tile(data=year1925, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year1950<-subset(annual,realyear==1950)
 
 plot1950<-ggplot()
 plot1950 <- plot1950 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1950<-plot1950+geom_tile(data=year1950, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1950<-plot1950+geom_tile(data=year1950, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year1975<-subset(annual,realyear==1975)
 
 plot1975<-ggplot()
 plot1975 <- plot1975 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot1975<-plot1975+geom_tile(data=year1975, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot1975<-plot1975+geom_tile(data=year1975, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year2000<-subset(annual,realyear==2000)
 
 plot2000<-ggplot()
 plot2000 <- plot2000 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot2000<-plot2000+geom_tile(data=year2000, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot2000<-plot2000+geom_tile(data=year2000, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 
 year2012<-subset(annual,realyear==2012)
 
 plot2012<-ggplot()
 plot2012 <- plot2012 + geom_polygon( data=worldmap, aes(x=long, y=lat, group = group),colour="black", fill="white" )+ theme(aspect.ratio=1/2)+coord_cartesian(ylim=c(-90,90), xlim=c(-180,180))+scale_y_continuous(breaks=seq(-90, 90, 30))+scale_x_continuous(breaks=seq(-180, 180, 60))
-plot2012<-plot2012+geom_tile(data=year2012, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide = "colourbar")+theme_bw()
+plot2012<-plot2012+geom_tile(data=year2012, aes(x=(long-2.5),y=(lat+2.5),fill=anomaly, alpha=.75, guide=FALSE))+  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0,space = "rgb", na.value = "grey50",guide="colourbar")+theme_bw()
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   require(grid)
 
@@ -166,53 +163,56 @@ However, as time passes, the interior of the continents are filled in more until
 \subsection*{Anomalies vs. Absolute Temperature}
 The data presented here are recorded with respect to the 1961-1990 period.  The 1961-1990 period was chosen by the researchers who created this data set since it has some of most consistent data in terms of complete coverage of temperature values. For each station used, the baseline average over 1961-1990 was computed in order to record temperature anomalies by that station per month.
 
-This is good for a few reasons of comparability:
+Using temperature anomalies instead of absolute temperatures were useful is solving a few issues of comparability between stations:
 \begin{enumerate}
-\item Different stations are in different locations
+\item Different stations are in different locations (temperature varies by location)
 \item Different stations use different recording methods (land vs. sea stations)
 \item Different countries use different methods of calculating average monthly temperature
 \end{enumerate}
-Taken together, using temperature anomalies allows for comparability between the locations.
+Taken together, using temperature anomalies allows for better comparability between the locations and should resolve some issues in bias when stations use different recording methods.
 
-The graph below gives the overall deviation in degrees from the 1961 to 1990 trend line by month. Points plotted below zero represent an average temperature below the 1961 to 1990 trend and points plotted above zero represents an average temperature above the trend line. As can be seen, the vast majority of months from 1850 to 1950 have negative deviations indicating that temperatures from that time period were slightly cooler than the trend of temperatures from 1961 to 1990. Starting around the 1970's to 1980's most of the anomalies start to increase such that by 2010 the temperature anomoly is hoving at about 0.5 degrees above the 1961 to 1990 trend line.
+\subsection*{Global Trends}
+
+The graph below gives the overall deviation in degrees from the 1961 to 1990 trend line by month. Points plotted below zero represent an average temperature in that month below the 1961 to 1990 average and points plotted above zero represents an average temperature above the 30-year average. As can be seen, the vast majority of months from 1850 to 1950 have negative deviations indicating that temperatures from that time period were slightly cooler than the average of temperatures from 1961 to 1990. Starting around the 1970's to 1980's most of the anomalies start to increase such that by 2010 the temperature anomoly is hoving at about 0.5 degrees above the 1961 to 1990 trend line. It can be noted on the graph that there have been two significant warming periods in the 20th century. The periods from 1925 to 1944 and from 1978 to 1997 exhibited some of the largest warming patterns over the past century.
 \begin{figure}[H]
-<<plot-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3, out.width='\\linewidth'>>=
+<<plot-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,anomaly,data=monthly,geom="line",color=anomaly) + geom_smooth(se=FALSE,color="red")
 @
 \caption{\label{alltopresent}Time series of global temperature anomalies 1850-present}
 \end{figure}
-Over the past 16 years, there has been a general plateau in the increase in global temperatures that has been occuring over the past century. As can been by the fitted linear line below, the line is relatively flat indicating that no significant amount of warming has occurred globally over the past 16 years. Some skeptics have pointed to this stagnant trend of no temperature increase as evidence that we should not worry about the effects of climate change. However, we would like to point out that warming may return in the future. Further, even though we are currently in a trend of stagnating temperatures, we are not seeing any decrease in the overall temperature trend. Meaning that we are still living with the increased temperatures from previous warming periods during the twentieth century.
-
-\begin{figure}[H]
-<<15-years, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3, out.width='\\linewidth'>>=
+In October of this year, \emph{The Daily Mail} published an article pointing to this data set and saying that there has been no warming in the last 16 years. The graph is roughly reproduced here with a linear trend line drawn - the trend is indeed not significantly different from zero. Some skeptics have pointed to this stagnant trend of no large temperature increase as evidence that we should not worry about the effects of climate change.  \begin{figure}[H]
+<<15-years, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
-qplot(fixedtime,anomaly,data=recent97, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
+qplot(fixedtime,anomaly,data=recent97) + geom_smooth(method="lm", se=FALSE, color="red")
 @
 \caption{\label{last16}Time series of temperature anomalies for last 16 years}
 \end{figure}
-
-Indeed, if we were to extend the range back to 1975, we would see a much different picture of warming trends. A linear line over the 1975-2012 period sees a much larger increase in temperature due to the warming period during 1978-1997.
+However, recall Figure 3: this is a time series with quite a lot of variation and a small trend. There are several places in the last 40 years where a flat "trend" could be drawn. The newspaper has also chosen a particularly good point to start from. If we were to extend the range back to 1975, we would see a much different picture of warming trends. Figure 4, with the two trends split up, shows what the choice of starting points in the Daily Mail's article implies about the trend. Without doing any formal hypothesis testing, it looks as if an extremely high outlier in 1997 and a couple relatively lackluster years in the 2000s compared to that outlier have combined to give the appearance of stagnation if you "cherrypick" the starting points of the data.
 
 \begin{figure}[H]
-<<recent-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3,out.width='\\linewidth'>>=
+<<recent-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5,out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
-qplot(fixedtime,anomaly,data=recent, color=anomaly) + geom_smooth(method="lm", se=FALSE, color="red")
+recent$latest<-(recent$X > (max(recent$X) - 176))
+qplot(fixedtime,anomaly,data=recent, color=latest)+aes(group=latest) + geom_smooth(method="lm", se=FALSE, color="black")
 @
 \caption{\label{1975topresent}Time series of temperature anomalies for 1975 to present}
 \end{figure}
 
-After looking at global temperature trends, we decided it would be interesting to check out trends in certain locations of interest. As such, we decided to look into the temperature data for Story County.
+\subsection*{Locations of Interest}
 
-One general thing for this graph that is true for all the other graphs of individual locations, is that the range of anomalies is much higher than that of the global anomoly graph. Almost all of the anomolies for the global anomoly graph fell within one degree Celcius of the 1960-1991 trend. Whereas, for Story county, the majority of anomolies fall within 10 degrees Celsius of it's own 1960-1991 trend. We see from the smoothed line that the trend of anomolies has been increasing over time, indicating that Story County has risen in temperature over the past century and a half.
+After looking at global temperature trends, we decided it would be interesting to check out trends in certain locations of interest. As such, we decided to look into the temperature data for Story County, Iowa.
+
+When looking at individual locations, the range of anomalies is much higher than that of the global anomoly graph. Almost all of the anomolies for the global anomoly graphs posted above fell within one degree Celcius of the 1960-1991 trend. Whereas, for Story county, the majority of anomolies fall within 10 degrees Celsius of it's own 1960-1991 trend. We see from the smoothed line that the trend of anomolies has been increasing over time, indicating that Story County has risen in temperature over the past century and a half. Starting in 1850, Story County was about 1 degree Celsius below the 1960-1991 trend while now it is about 1 degree Celsius above the trend.
 
 %Latitude and longitude for story county is at 42.0242? N, 93.5287? W
 % This is lat=40 and long=-95 in our dataset
 %Latitude and longitude for Augsburg Germany is 48.3647? N, 10.8953? E
 % closest is lat=50 and long=10
+
 \begin{figure}[H]
-<<story-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=5, fig.height=3,out.width='\\linewidth'>>=
+<<story-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5,out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,value,data=storycounty,geom="line",color=value,na.rm=T) + geom_smooth(se=FALSE,color="red",na.rm=T)
@@ -220,9 +220,9 @@ qplot(fixedtime,value,data=storycounty,geom="line",color=value,na.rm=T) + geom_s
 \caption{\label{storycount}Time series of temperature anomalies for Story County, IA}
 \end{figure}
 
-The trend for Augsburg, Germany is also increasing over time. However, as compared to Story County, Augsburg has had more months with large negative anomalies as compared to large positive anomalies.
+The trend for Augsburg, Germany is also increasing over time. However, as compared to Story County, Augsburg has had more months with large negative anomalies as compared to large positive anomalies. Again we see that in 1850, Augsburg was about 1 degree Celsius below the 1960-1991 trend while now it is about 1 degree Celsius above the trend. This is similar to where Story County sits at.
 \begin{figure}[H]
-<<augsburg-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=6, fig.height=4, out.width='\\linewidth'>>=
+<<augsburg-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 
 qplot(fixedtime,value,data=augsburg,geom="line",color=value) + geom_smooth(se=FALSE,color="red")
@@ -232,20 +232,22 @@ qplot(fixedtime,value,data=augsburg,geom="line",color=value) + geom_smooth(se=FA
 
 %Chose point in Antartica that actually had data values lat==-75 & long==15
 
-To look at the polar regions, we choose a point with a latitude of 75 degrees South and 15 degrees East. Again, the polor region here is experiencing a warming trend.
+To look at the polar regions, we choose a point with a latitude of 75 degrees South and 15 degrees East. Again, the polor region here is experiencing a warming trend. There is less data available for this location in Antarctica with anomalies only reported back to 1960. As such, we do not know how the temperature trend looks back in the 1800's. However, given the shorter period time as compared to the other graphs for Augsburg and Story County, we still see a significant increasing temperature pattern in this Antarctic location. 
 
 \begin{figure}[H]
-<<antartic-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=6, fig.height=4, out.width='\\linewidth'>>=
+<<antartic-trend, dependson='initial', message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 qplot(fixedtime,value,data=antarctica,geom="line",color=value,na.rm=T) + geom_smooth(se=FALSE,color="red",na.rm=T) 
 @
 \caption{\label{antarctica}Time series of temperature anomalies for a station in Antarctica, 1960-present.}
 \end{figure}
 
-Next, we found some interesting maps of the world colored by anomaly. Note that not every grid point has an entry and that not every grid point is greater than 0. An interesting comparison in time is between 1978 and 1997 which marked the beginning and conclusion of a substantial warming period during the twentient century. As can be noted in the 1978 map, a significantly larger portion of the map is shaded in blue, while in the 1997 those blue areas change to a neutral white. 
+\subsection{World Maps from 1978 and 1997}
+
+Next, we turn back to some interesting maps of the world colored by anomaly. An interesting comparison in time is between 1978 and 1997 which marked the beginning and conclusion of a substantial warming period during the twentient century. As can be noted in the 1978 map, a significantly larger portion of the map is shaded in blue, while in the 1997 those blue areas change to a neutral white. Further, a lot of areas colored in white in 1978 and colored in red in 1997 and those colored in red in 1978 are a darker shade of red in 1997. These maps show that overall temperatures have risen between 1978 and 1997, regardless of location.
 
 \begin{figure}[H]
-<<1978-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
+<<1978-map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 sep2012<-subset(annual,realyear==1978)
 q<-ggplot()
@@ -256,10 +258,8 @@ print(q)
 \caption{\label{1978map}Map of temperature anomalies for 1978}
 \end{figure}
 
-I'm throwing in some stuff here and hoping this will make it work.
-
 \begin{figure}[H]
-<<second1997map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=8, fig.height=5, out.width='\\linewidth'>>=
+<<second1997map, dependson='initial', cache=TRUE, message=FALSE, echo=FALSE, fig.width=10, fig.height=5, out.width='\\linewidth'>>=
 suppressMessages(library(ggplot2))
 sep2012<-subset(last20,(realyear==1997 & month==8))
 
@@ -271,8 +271,11 @@ print(q)
 \caption{\label{another1997map}Map of temperature anomalies for Summer 1997}
 \end{figure}
 
-
-
 \section{Conclusion:}
-There will be some kind of conclusion.
+We set out to explore global temperature anomalies graphically over the past century and a half graphically and found some interesting trends. Overall, global temperatures are rising, regardless of location, with 1925-1944 and 1978-1997 showing rapid increases in overall temperature. If you only look locally at the last several years, it is hard to see any trend, but in the larger context it cannot be concluded that the trend has changed.
+
+\section{References}
+Morice, C. P., J. J. Kennedy, N. A. Rayner, and P. D. Jones (2012), Quantifying uncertainties in global and regional temperature change using an ensemble of observational estimates: The HadCRUT4 dataset, J. Geophys. Res., 117, D08101, doi:10.1029/2011JD017187.
+
+Rose,D. (2012, October 16). Global warming stopped 16 years ago. \emph{The Daily Mail.} Retrieved 12/10/2012. from \url{http://www.dailymail.co.uk/sciencetech/article-2217286/Global-warming-stopped-16-years-ago-reveals-Met-Office-report-quietly-released--chart-prove-it.html}
 \end{document}
